@@ -1,12 +1,8 @@
 #!/bin/bash
 
-sudo su - jive
-jive stop
-rm -rf applications/sbs/home/plugins/*
-exit
-sudo su - postgres
-psql -d jive -c "delete from jiveplugin"
-exit
-sudo su - jive
-jive start
+sudo su -c "jive stop" -s /bin/sh jive
+sudo su -c "rm -rf ~/applications/sbs/home/plugins/*" -s /bin/sh jive
+
+sudo su -c "psql -d jive -c 'delete from jiveplugin'" -s /bin/sh postgres
+sudo su -"jive start" -s /bin/sh jive
 
